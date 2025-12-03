@@ -1,0 +1,26 @@
+{
+  "name": "ai-teacher-miniprogram",
+  "version": "1.0.0",
+  "description": "AI助教微信小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "echo \"请使用微信开发者工具打开此项目目录进行开发\"",
+    "check": "node check-syntax.js"
+  },
+  "keywords": [
+    "wechat",
+    "miniprogram",
+    "ai",
+    "education"
+  ],
+  "author": "AI助教团队",
+  "license": "MIT",
+  "dependencies": {
+    "@vant/weapp": "^1.11.7",
+    "mina-request": "^1.0.8",
+    "mobx-miniprogram": "^6.12.3",
+    "mobx-miniprogram-bindings": "^5.1.1",
+    "mp-html": "^2.5.1"
+  }
+}

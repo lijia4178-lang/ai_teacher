@@ -1,0 +1,577 @@
+/* AI老师聊天页面样式 - 重新设计以支持输入框完全显示 */
+.chat-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  /* 允许页面内容溢出时可以滚动 */
+  overflow: hidden;
+}
+
+/* 顶部标题栏 - 固定高度 */
+.header {
+  height: 88rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  /* 确保标题栏固定在顶部 */
+  position: relative;
+  z-index: 10;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.more-icon {
+  font-size: 36rpx;
+  margin-right: 30rpx;
+  color: #666666;
+}
+
+.moon-icon {
+  font-size: 32rpx;
+  color: #666666;
+}
+
+.chat-content {
+  /* 使用flex布局占据剩余空间，自动适应输入区域高度变化 */
+  flex: 1;
+  padding: 15rpx;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  /* 移除固定高度计算，让flex布局自动管理空间 */
+  min-height: 0;
+}
+
+.message-wrapper {
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* AI消息 - 头像在左侧 */
+.ai-message {
+  justify-content: flex-start;
+}
+
+/* 用户消息 - 头像在右侧 */
+.user-message {
+  justify-content: flex-end;
+}
+
+.message-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* AI头像样式 - 左侧 */
+.ai-message .message-avatar {
+  order: 1;
+  margin-right: 10rpx;
+}
+
+/* 用户头像样式 - 右侧 */
+.user-message .message-avatar {
+  order: 2;
+  margin-left: 10rpx;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: white;
+}
+
+.user-avatar {
+  background-color: #07c160; /* 微信绿 */
+}
+
+.ai-avatar {
+  background-color: #06a854; /* 深绿色 */
+}
+
+/* 消息内容 */
+.message-content {
+  max-width: 100%;
+  padding: 20rpx 30rpx;
+  border-radius: 20rpx;
+  word-wrap: break-word;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+/* 打字指示器样式 */
+.typing-indicator {
+  display: flex;
+  gap: 8rpx;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+/* 预设按钮条（水平可滑动） */
+.preset-bar {
+  height: 80rpx;
+  padding: 5rpx 15rpx;
+  background-color: #ffffff;
+  border-bottom: 1rpx solid #f0f0f0;
+  overflow-x: auto; /* 确保可以水平滚动 */
+  white-space: nowrap; /* 防止容器内换行 */
+}
+.preset-list {
+  display: flex;
+  align-items: center;
+  border:1rpx #ffffff;
+  flex-wrap: nowrap; /* 确保项目不会换行 */
+  min-width: max-content; /* 确保容器宽度足够容纳所有项目 */
+}
+.preset-btn {
+  margin-right: 14rpx;
+  background: #f7f7f8;
+
+  font-size: 28rpx;
+  /* 不允许换行，文字在x方向展开 */
+  white-space: nowrap;
+  word-break: normal;
+  /* 移除max-width限制，允许按钮根据内容扩展 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  flex-shrink: 0; /* 防止按钮被压缩 */
+}
+.preset-btn.active {
+  background: #07c160;
+  color: #fff;
+}
+
+/* .typing-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background-color: #999;
+  animation: typing-bounce 1.4s infinite ease-in-out both;
+} */
+
+/* .typing-dot:nth-child(1) {
+  animation-delay: -0.32s;
+} */
+
+/* .typing-dot:nth-child(2) {
+  animation-delay: -0.16s;
+} */
+
+@keyframes typing-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 用户消息内容 - 右对齐 */
+.user-message .message-content {
+  background-color: #e7b17eff; /* 微信绿 */
+  color: white;
+  order: 1;
+}
+
+/* AI消息内容 - 左对齐 */
+.ai-message .message-content {
+  background-color: #ffffff;
+  color: #333;
+  order: 2;
+}
+
+/* AI 回复下方的三个显示框 */
+.ai-boxes {
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+  justify-content: flex-start;
+  gap: 12rpx; /* 上下间距 */
+  margin-top: 8rpx;
+}
+.ai-box {
+  width: 100%;
+  background: #f7f9fb;
+  border: 1rpx solid #e8eef2;
+  border-radius: 12rpx;
+  padding: 12rpx;
+  box-sizing: border-box;
+  display: block;
+  align-items: flex-start;
+}
+
+/* 内部行布局：图标 + 内容 + 箭头 */
+.ai-box-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+.ai-box-icon {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+  background: #e6f7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  margin-right: 12rpx;
+  color: #0a84ff;
+  flex-shrink: 0;
+  box-shadow: 0 2rpx 6rpx rgba(10,132,255,0.06);
+}
+.ai-box-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.ai-box-arrow {
+  font-size: 28rpx;
+  color: #c0cbd3;
+  margin-left: 8rpx;
+}
+
+/* 分隔线：每个框的上方显示轻微分隔线（除了第一个） */
+.ai-box + .ai-box {
+  border-top: 1rpx solid #e8eef2;
+  padding-top: 14rpx;
+  margin-top: 12rpx;
+}
+.ai-box-key {
+  font-size: 22rpx;
+  color: #6b7a86;
+  margin-bottom: 6rpx;
+}
+.ai-box-value {
+  font-size: 28rpx;
+  color: #222;
+  font-weight: 600;
+}
+
+/* 点击反馈（原生 active 也会起效，但添加过渡更平滑） */
+.ai-box { transition: background-color 120ms ease, transform 120ms ease; }
+.ai-box:active { background-color: #f0fbff; transform: translateY(1rpx); }
+
+.loading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx;
+  color: #999;
+}
+
+.loading-spinner {
+  width: 40rpx;
+  height: 40rpx;
+  border: 4rpx solid #f3f3f3;
+  border-top: 4rpx solid #07c160; /* 微信绿 */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 10rpx;
+}
+
+
+
+/* 输入区域样式 */
+.input-area {
+  display: flex;
+  align-items: center;
+  padding: 5rpx 20rpx;
+  background-color: #fff;
+  border-top: 1rpx solid #eee;
+}
+
+/* 输入框样式 */
+.chat-input {
+  flex: 1;
+  height: 60rpx;
+  min-height: 60rpx;
+  max-height: 200rpx;
+  padding: 12rpx 20rpx;
+  background-color: #f5f5f5;
+  border-radius: 15rpx;
+  box-sizing: border-box;
+  font-size: 32rpx;
+  color: #333;
+  word-break: break-all;
+  white-space: pre-wrap;
+  resize: none;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.chat-input::-webkit-input-placeholder {
+  color: #999;
+}
+
+/* 输入操作按钮区域 */
+.input-actions {
+  display: flex;
+  margin-left: 20rpx;
+}
+
+/* 语音按钮样式 */
+.voice-btn {
+  width: 75rpx;
+  height: 75rpx;
+  padding: 0rpx;
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx;
+
+
+}
+
+/* 语音图标样式 */
+.voice-icon {
+  width: 60rpx;
+  height: 60rpx;
+
+}
+
+.voice-btn.recording {
+  background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4rpx 16rpx rgba(255, 77, 79, 0.3);
+}
+
+/* 语音按钮点击效果 */
+.voice-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 发送按钮样式 */
+.send-btn {
+  height: 75rpx;
+  line-height: 75rpx;
+  padding: 0 40rpx;
+  background: linear-gradient(135deg, #07c160 0%, #059e4f 100%);
+  color: white;
+  border-radius: 30rpx;
+  font-size: 32rpx;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2rpx 8rpx rgba(7, 193, 96, 0.3);
+}
+
+.send-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1rpx 4rpx rgba(7, 193, 96, 0.2);
+}
+
+.send-btn:hover {
+  transform: translateY(-1rpx);
+  box-shadow: 0 4rpx 16rpx rgba(7, 193, 96, 0.4);
+}
+
+/* 适配不同屏幕大小 */
+@media (min-width: 768px) {
+  .message-content {
+    max-width: 60%;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* 加载状态容器 */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 0;
+  margin: 20rpx 0;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999;
+  margin-left: 15rpx;
+}
+
+/* mp-html组件样式 - 适配聊天界面 */
+.mp-html {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* 调整mp-html内部元素样式以匹配小程序聊天界面 */
+.mp-html h1,
+.mp-html h2,
+.mp-html h3,
+.mp-html h4,
+.mp-html h5,
+.mp-html h6 {
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.mp-html h1 {
+  font-size: 40rpx;
+}
+
+.mp-html h2 {
+  font-size: 36rpx;
+}
+
+.mp-html h3 {
+  font-size: 32rpx;
+}
+
+.mp-html h4,
+.mp-html h5,
+.mp-html h6 {
+  font-size: 28rpx;
+}
+
+.mp-html p {
+  margin-bottom: 15rpx;
+  word-break: break-word;
+}
+
+.mp-html ul,
+.mp-html ol {
+  margin-bottom: 15rpx;
+  padding-left: 40rpx;
+}
+
+.mp-html li {
+  margin-bottom: 5rpx;
+}
+
+.mp-html strong {
+  font-weight: 600;
+  color: #333;
+}
+
+.mp-html em {
+  font-style: italic;
+}
+
+.mp-html code {
+  background-color: #f5f5f5;
+  padding: 2rpx 8rpx;
+  border-radius: 4rpx;
+  font-family: monospace;
+  font-size: 26rpx;
+}
+
+.mp-html pre {
+  background-color: #f5f5f5;
+  padding: 20rpx;
+  border-radius: 12rpx;
+  overflow-x: auto;
+  margin-bottom: 15rpx;
+}
+
+.mp-html blockquote {
+  border-left: 4rpx solid #07c160;
+  padding-left: 20rpx;
+  margin-left: 0;
+  margin-bottom: 15rpx;
+  color: #666;
+}
+
+.mp-html table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15rpx;
+}
+
+.mp-html th,
+.mp-html td {
+  border: 1rpx solid #ddd;
+  padding: 8rpx 12rpx;
+  text-align: left;
+}
+
+.mp-html th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+/* 确保流式渲染期间内容平滑过渡 */
+.ai-content {
+  transition: opacity 0.2s ease;
+}
+
+/* 修复打字指示器的样式 */
+.typing-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background-color: #999;
+  animation: typing-bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

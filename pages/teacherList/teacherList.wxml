@@ -1,0 +1,95 @@
+
+<view class="container">
+ 
+
+  <!-- 筛选条件区域 -->
+  <view class="filter-section">
+    <!-- 科目筛选 -->
+    <view class="filter-group">
+      <text class="filter-label">科目：</text>
+      <view class="filter-options">
+        <view wx:for="{{subjectOptions}}" wx:key="*this" 
+              class="filter-option {{selectedSubject === item ? 'selected' : ''}}" 
+              bindtap="selectSubject" 
+              data-subject="{{item}}">
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 教学经验筛选 -->
+    <view class="filter-group">
+      <text class="filter-label">经验：</text>
+      <view class="filter-options">
+        <view wx:for="{{experienceOptions}}" wx:key="value" 
+              class="filter-option {{selectedExperience === item.value ? 'selected' : ''}}" 
+              bindtap="selectExperience" 
+              data-experience="{{item.value}}">
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 价格范围筛选 -->
+    <view class="filter-group">
+      <text class="filter-label">价格：</text>
+      <view class="filter-options">
+        <view wx:for="{{priceOptions}}" wx:key="value" 
+              class="filter-option {{selectedPrice === item.value ? 'selected' : ''}}" 
+              bindtap="selectPrice" 
+              data-price="{{item.value}}">
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 重置按钮 -->
+    <view class="reset-button" bindtap="resetFilters">
+      重置筛选
+    </view>
+  </view>
+
+  <!-- 教师列表 -->
+  <view class="teacher-list">
+    <!-- 筛选结果统计 -->
+    <view class="result-info">
+      <text>共找到 {{filteredTeachers.length}} 位教师</text>
+    </view>
+    
+    <!-- 教师列表 -->
+    <block wx:if="{{filteredTeachers.length > 0}}">
+      <block wx:for="{{filteredTeachers}}" wx:key="id">
+        <view class="teacher-item">
+          <view class="teacher-info" bindtap="viewTeacherDetail" data-teacher="{{item}}">
+            <view class="teacher-avatar">
+              <view class="avatar-placeholder">{{item.name.charAt(0)}}</view>
+            </view>
+            <view class="teacher-details">
+              <view class="teacher-name">{{item.name}}</view>
+              <view class="teacher-subject">科目：{{item.subject}}</view>
+              <view class="teacher-meta">
+                <text class="teacher-experience" wx:if="{{item.experience}}">经验：{{item.experience}}年</text>
+                <text class="teacher-price" wx:if="{{item.price}}">价格：{{item.price}}元/小时</text>
+              </view>
+              <view class="teacher-intro">{{item.introduction}}</view>
+            </view>
+          </view>
+          <button class="contact-btn" 
+                  type="primary" 
+                  size="mini" 
+                  bindtap="contactTeacher" 
+                  data-teacher="{{item}}">
+            联系老师
+          </button>
+        </view>
+      </block>
+    </block>
+    
+    <!-- 无结果提示 -->
+    <block wx:else>
+      <view class="no-result">
+        <text>没有找到符合条件的教师</text>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,108 @@
+import mp-html from 'mp-html/index.js'
+<view class="chat-container">
+  <!-- 聊天内容区域 -->
+  <scroll-view scroll-y="true" class="chat-content" scroll-into-view="{{scrollToMessage}}" >
+    <block wx:for="{{messages}}" wx:key="index">
+      <view id="message-{{index}}" class="message-wrapper {{item.type === 'user' ? 'user-message' : 'ai-message'}}">
+        <view class="message-avatar">
+          <view wx:if="{{item.type === 'user'}}" class="avatar-placeholder user-avatar">用户</view>
+          <view wx:else class="avatar-placeholder ai-avatar">AI</view>
+        </view>
+        
+        <!-- 消息内容 -->
+        <view class="message-content">
+          <block wx:if="{{item.type === 'user'}}">
+            <text>{{item.content}}</text>
+          </block>
+          <block wx:else>
+            <!-- AI回复内容 - 根据是否为Markdown选择不同的渲染方式 -->
+            <view class="ai-content">
+              <!-- 使用mp-html组件渲染Markdown内容 -->
+              <mp-html wx:if="{{item.isMarkdown}}" content="{{item.content}}" show-img-menu="false" scroll-table="true" copy-link="true" selectable="true" />
+              <!-- 普通文本内容 -->
+              <text wx:else>{{item.content}}</text>
+            </view>
+
+            <!-- 流式回复状态指示（当 content 为空时显示） -->
+            <view wx:if="{{!item.content || item.content === ''}}" class="typing-indicator">
+              <view class="typing-dot"></view>
+              <view class="typing-dot"></view>
+              <view class="typing-dot"></view>
+            </view>
+            
+            <!-- 在 AI 回复下方显示三个信息框 -->
+            <view class="ai-boxes" wx:if="{{item.boxes && item.boxes.length}}">
+              <block wx:for="{{item.boxes}}" wx:for-item="box" wx:for-index="bidx" wx:key="bidx">
+                <view class="ai-box" bindtap="onBoxTap" data-msg-index="{{index}}" data-box-index="{{bidx}}">
+                  <view class="ai-box-row">
+                    <view class="ai-box-icon">🔖</view>
+                    <view class="ai-box-content">
+                      <text class="ai-box-key">{{box.key}}</text>
+                      <text class="ai-box-value">{{box.value}}</text>
+                    </view>
+                    <view class="ai-box-arrow">›</view>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+
+    <!-- 加载状态 -->
+    <view wx:if="{{loading}}" class="loading-container">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">AI正在思考中...</text>
+    </view>
+  </scroll-view>
+  
+  <!-- 输入用户类型 -->
+  <van-picker show-toolbar
+  title="请选择您的身份"
+  wx:if = "{{show}}"
+  columns="{{ columns }}"
+  default-index="{{ 1 }}"
+  bind:confirm ="onConfirm"
+  bind:cancel = "onCancel"
+  bind:change = "onChange"/>
+
+  <van-toast  id="van-toast" class= "toast-voice" />
+
+  <!-- 输入区域 -->
+  <!-- 预设按钮（水平可滑动） -->
+  <scroll-view class="preset-bar" scroll-x="true" show-scrollbar="false">
+    <view class="preset-list">
+      <block wx:for="{{presets}}" wx:for-item="p" wx:for-index="i" wx:key="i">
+        <button class="preset-btn {{selectedPreset === i ? 'active' : '' }}" data-index="{{i}}" bindtap="selectPreset">{{p.label}}</button>
+      </block>
+    </view>
+  </scroll-view>
+<!-- 输入内容区域 -->
+  <view class="input-area">
+    <textarea 
+      class="chat-input" 
+      placeholder="请输入内容" 
+      value="{{inputContent}}" 
+      bindinput="onInputChange" 
+      bindconfirm="sendMessage"
+      auto-height="true"
+      adjust-position="true"
+      maxlength="-1"
+      show-confirm-bar="false"
+      placeholder-style="color:#999"
+      cursor-spacing="20"
+    />
+    <view class="input-actions">
+      <button class="voice-btn" bindtouchstart="startVoice" bindtouchend="stopVoice" bindtouchcancel="cancelVoice">
+        <image 
+          class="voice-icon"
+          src="{{isRecording ? '/images/voice_selected.png' : '/images/voice.png'}}"
+          mode="aspectFit"
+        />
+        
+      </button>
+      <button class="send-btn" bindtap="sendMessage">发送</button>
+    </view>
+  </view>
+</view>

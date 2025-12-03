@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/teacherList/teacherList",
+    "pages/my/my",
+    "pages/aiTeacher/aiTeacher",
+    "pages/login/login",
+    "pages/teacherDetail/teacherDetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFF3E0",
+    "navigationBarTitleText": "AI助教",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "debug":true,
+  "usingComponents": {
+    "van-popup": "@vant/weapp/popup/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-toast": "@vant/weapp/toast/index"
+  },
+
+  "tabBar": {
+    "color": "#A1887F",
+    "selectedColor": "#FFCC80",
+    "list": [
+      {
+        "pagePath": "pages/aiTeacher/aiTeacher",
+        "text": "AI老师",
+        "iconPath": "./images/AI_3.png",
+        "selectedIconPath": "./images/AI_3selected.png"
+      },
+      {
+        "pagePath": "pages/teacherList/teacherList",
+        "text": "教师名单",
+        "iconPath": "./images/teacher.png",
+        "selectedIconPath": "./images/teacher_selected.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "./images/mine.png",
+        "selectedIconPath": "./images/mine_selected.png"
+      }
+    ]
+  }
+  
+
+  
+}

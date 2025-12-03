@@ -1,0 +1,58 @@
+
+
+<view class="detail-container">
+  <!-- 顶部返回按钮 -->
+  <view class="nav-bar">
+    <view class="back-btn" bindtap="goBack">返回</view>
+    <text class="nav-title">老师详情</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 老师信息卡片 -->
+  <view class="teacher-card">
+    <view class="teacher-header">
+      <view class="teacher-avatar">{{teacher.name.charAt(0)}}</view>
+      <view class="teacher-basic-info">
+        <text class="teacher-name">{{teacher.name}}</text>
+        <text class="teacher-subject">{{teacher.subject}}老师</text>
+      </view>
+    </view>
+
+    <!-- 详细信息 -->
+    <view class="teacher-details">
+      <view class="detail-item">
+        <text class="detail-label">教学经历：</text>
+        <text class="detail-value">{{teacher.experience}}年</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">授课价格：</text>
+        <text class="detail-value">{{teacher.price}}元/小时</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">教学风格：</text>
+        <text class="detail-value">{{teacher.teachingStyle || '生动活泼，注重实践'}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">擅长科目：</text>
+        <text class="detail-value">{{teacher.subject}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">学历背景：</text>
+        <text class="detail-value">{{teacher.education || '本科及以上'}}</text>
+      </view>
+    </view>
+
+    <!-- 教学优势 -->
+    <view class="advantages-section">
+      <text class="section-title">教学优势</text>
+      <view class="advantage-content">
+        <text>{{teacher.advantages || '• 经验丰富，善于激发学生学习兴趣\n• 注重基础，循序渐进\n• 针对性教学，快速提高成绩\n• 有耐心，亲和力强'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部联系按钮 -->
+  <view class="bottom-action">
+    <button class="contact-button" bindtap="contactTeacher">立即联系老师</button>
+  </view>
+</view>

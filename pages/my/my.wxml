@@ -1,0 +1,61 @@
+
+
+<view class="container">
+  <!-- 用户信息区域 -->
+  <view class="user-section">
+    <view class="user-avatar">
+      <view wx:if="{{userInfo.avatarUrl}}">
+        <image src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      </view>
+      <view wx:else>
+        <view class="avatar-placeholder">用</view>
+      </view>
+    </view>
+    <view class="user-info">
+      <view class="user-name">{{userInfo.nickName || '学生用户'}}</view>
+      <view class="user-id">{{userInfo.openId ? 'OpenID: ' + userInfo.openId : 'ID: 123456'}}</view>
+    </view>
+    <button class="login-btn" wx:if="{{!userInfo.nickName}}" type="primary" bindtap="getUserProfile">登录</button>
+  </view>
+  
+  <!-- 手机号区域 -->
+  <view class="phone-section" wx:if="{{userInfo.nickName}}">
+    <view class="phone-item">
+      <text class="phone-label">手机号</text>
+      <text class="phone-value">{{userInfo.phoneNumber || '未设置'}}</text>
+      <button wx:if="{{!userInfo.phoneNumber}}" open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber" type="mini">获取</button>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="menu-section">
+      <view class="menu-item" bindtap="clearChatHistory">
+        <view class="menu-icon">清</view>
+        <view class="menu-text">清除聊天记录</view>
+        <view class="menu-arrow">›</view>
+      </view>
+
+      <view class="menu-item" bindtap="aboutUs">
+        <view class="menu-icon">关</view>
+        <view class="menu-text">关于我们</view>
+        <view class="menu-arrow">›</view>
+      </view>
+
+      <view class="menu-item" bindtap="feedback">
+        <view class="menu-icon">反</view>
+        <view class="menu-text">意见反馈</view>
+        <view class="menu-arrow">›</view>
+      </view>
+
+      <view class="menu-item" bindtap="settings">
+        <view class="menu-icon">设</view>
+        <view class="menu-text">设置</view>
+        <view class="menu-arrow">›</view>
+      </view>
+    </view>
+
+  <!-- 版本信息 -->
+  <view class="version-info">
+    <text>版本 1.0.0</text>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+
+  "backgroundColor": "#f5f5f5",
+  "usingComponents": {
+    "mp-html": "mp-html",
+    "van-toast": "@vant/weapp/toast/index"
+  }
+}

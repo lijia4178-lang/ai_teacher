@@ -1,0 +1,2 @@
+<!--pages/login/login.wxml-->
+<text bindtap= "handle">1231234</text>

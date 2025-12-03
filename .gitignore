@@ -18,24 +18,6 @@ miniprogram_npm/
 build/
 dist/
 
-# 环境变量文件
-.env
-.env.*
-!.env.example
-
-# 微信开发者工具生成的文件
-*.wxs
-*.wxss
-*.wxml
-*.js
-*.json
-*.ts
-*.tsx
-*.less
-*.scss
-*.sass
-*.stylus
-
 # macOS 系统文件
 .DS_Store
 Thumbs.db

@@ -1,0 +1,53 @@
+/* 全局样式 */
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+  Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+  sans-serif;
+  background-color: #f8f8f8;
+  color: #333333;
+}
+
+.container {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 通用按钮样式 */
+.btn {
+  display: inline-block;
+  padding: 20rpx 40rpx;
+  background-color: #1296db;
+  color: white;
+  border-radius: 10rpx;
+  text-align: center;
+}
+
+.btn:active {
+  opacity: 0.8;
+}
+
+/* 输入框通用样式 */
+.input {
+  width: 100%;
+  padding: 20rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+}
+
+/* 列表项通用样式 */
+.list-item {
+  padding: 30rpx;
+  background-color: white;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+  align-items: center;
+}
+
+/* 头像样式 */
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  margin-right: 30rpx;
+}
