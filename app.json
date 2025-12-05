@@ -17,7 +17,8 @@
   "usingComponents": {
     "van-popup": "@vant/weapp/popup/index",
     "van-picker": "@vant/weapp/picker/index",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-toast": "@vant/weapp/toast/index",
+    "@vant/weapp/card/index": "@vant/weapp/card/index"
   },
 
   "tabBar": {
