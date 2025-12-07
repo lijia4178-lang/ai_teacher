@@ -51,12 +51,6 @@
   padding: 20rpx;
 }
 
-/* 筛选结果统计 */
-.result-info {
-  margin-bottom: 20rpx;
-  font-size: 26rpx;
-  color: #666;
-}
 
 /* 教师项样式 */
 .teacher-item {

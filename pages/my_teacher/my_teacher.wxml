@@ -1,2 +1,46 @@
 <!--pages/my_teacher/my_teacher.wxml-->
-<text>pages/my_teacher/my_teacher.wxml</text>
+<van-card
+
+thumb="/images/teacher2.jpg"
+>
+<view slot="title" class="biger-font" >
+ 
+         <view class="biger-font">
+            <view class="tea-title">
+            <view class="tea-item">
+            <text class="info-font">姓名：</text>
+
+            {{teacher.name}}</view>
+            <van-tag mark type="warning">{{teacher.sort}}</van-tag>
+          </view>
+        </view>   
+          </view>
+          <view slot="desc">
+          <view class="biger-font">
+          <view class="tea-title" >
+          <view class="tea-desc">
+          <text class="info-font">教授科目：</text>
+          
+          {{teacher.subjects}}</view>
+          <view class="center-item">
+          <text class="info-font">学校：</text>
+          {{teacher.school}}</view>
+          </view >
+          <view class="tea-title">
+
+          <view>
+          <text class="info-font">教龄:</text>         
+          {{teacher.teaching_age}}年</view>
+          </view>
+          
+          <view>
+          <text class="info-font">自我描述:</text>
+          {{teacher.desc}}</view>
+          
+          <view>
+          <text class="info-font">地址：</text>     
+          {{teacher.location}}</view>
+          </view>
+        </view>   
+
+</van-card>

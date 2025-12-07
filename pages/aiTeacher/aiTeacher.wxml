@@ -5,8 +5,8 @@ import mp-html from 'mp-html/index.js'
     <block wx:for="{{messages}}" wx:key="index">
       <view id="message-{{index}}" class="message-wrapper {{item.type === 'user' ? 'user-message' : 'ai-message'}}">
         <view class="message-avatar">
-          <view wx:if="{{item.type === 'user'}}" class="avatar-placeholder user-avatar">用户</view>
-          <view wx:else class="avatar-placeholder ai-avatar">AI</view>
+          <view wx:if="{{item.type === 'user'}}" class="avatar-placeholder ">用户</view>
+          <image wx:else class="avatar-placeholder" src="/images/AI_3.png" mode="aspectFill" />
         </view>
         
         <!-- 消息内容 -->
@@ -41,6 +41,23 @@ import mp-html from 'mp-html/index.js'
                       <text class="ai-box-value">{{box.value}}</text>
                     </view>
                     <view class="ai-box-arrow">›</view>
+                  </view>
+                </view>
+              </block>
+            </view>
+            <!-- 如果 AI 回复中包含老师卡片，则渲染卡片列表 -->
+            <view class="teacher-cards" wx:if="{{item.teacherCards && item.teacherCards.length}}">
+              <block wx:for="{{item.teacherCards}}" wx:for-item="card" wx:for-index="cidx" wx:key="card.id">
+                <view class="teacher-card" data-id="{{card.id}}">
+                  <image class="teacher-avatar" src="{{card.image_url || '/images/teacher3'}}" mode="aspectFill" />
+                  <view class="teacher-info">
+                    <text class="teacher-name">{{card.name}}</text>
+                    <text class="teacher-subject">{{card.subjects || [].join('、')}}</text>
+                    <text class="teacher-desc">{{card.desc || card.experience || ''}}</text>
+                    <view class="teacher-actions">
+                      <button class="btn-view" data-id="{{card.id}}" bindtap="viewTeacherDetailFromCard">查看</button>
+                      <button class="btn-contact" data-id="{{card.id}}" data-name="{{card.name}}" data-price="{{card.price_range || card.price}}" bindtap="contactTeacherFromCard">联系</button>
+                    </view>
                   </view>
                 </view>
               </block>

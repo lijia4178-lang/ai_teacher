@@ -166,6 +166,11 @@ Page({
       teachers: mockTeachers,
       filteredTeachers: mockTeachers
     });
+    // 为详情页提供数据来源（开发/演示用）。生产环境请通过接口在详情页单独请求。
+    try{
+      const app = getApp();
+      if (app && app.globalData) app.globalData.teachers = mockTeachers;
+    }catch(e){console.warn('无法设置 globalData.teachers', e)}
   },
 
   selectSubject: function(e) {
@@ -235,13 +240,12 @@ Page({
   },
 
   viewTeacherDetail: function(e) {
-    const teacher = e.currentTarget.dataset.teacher;
-    
-    if (teacher) {
-      wx.navigateTo({
-        url: '/pages/teacherDetail/teacherDetail?teacher=' + JSON.stringify(teacher)
-      });
-    }
+    const id = e.currentTarget.dataset.id;
+    if (!id) return;
+    // 通过 id 跳转，详情页从 app.globalData.teachers 中查找对应数据（若不存在则详情页可请求接口）
+    wx.navigateTo({
+      url: '/pages/teacherDetail/teacherDetail?teacherId=' + encodeURIComponent(id)
+    });
   },
 
   contactTeacher: function(e) {

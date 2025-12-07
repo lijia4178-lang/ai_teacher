@@ -1,2 +1,26 @@
-<!--pages/my_classes/my_classes.wxml-->
-<text>pages/my_classes/my_classes.wxml</text>
+<!-- pages/my_classes/my_classes.wxml -->
+<view class="page">
+	<view class="header">上课反馈</view>
+
+	<block wx:if="{{feedbacks.length}}">
+		<block wx:for="{{feedbacks}}" wx:key="date">
+			<view class="feedback-card">
+				<view class="left">
+					<view class="date">{{item.displayDate}}</view>
+					<view class="mood">心情：<text class="mood-text">{{item.mood}}</text></view>
+				</view>
+				<view class="right">
+					<view class="content-title">上课内容</view>
+					<view class="content-text">{{item.class_content}}</view>
+
+					<view class="content-title">知识掌握</view>
+					<view class="content-text">{{item.student_class_status}}</view>
+				</view>
+			</view>
+		</block>
+	</block>
+
+	<block wx:else>
+		<view class="empty">暂无上课反馈</view>
+	</block>
+</view>

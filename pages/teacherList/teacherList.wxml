@@ -9,7 +9,7 @@
     <block wx:if="{{teachers.length > 0}}">
 
       <block wx:for="{{teachers}}" wx:key="id">
-        <view class="teacher-item">
+        <view class="teacher-item" bindtap="viewTeacherDetail" data-id="{{item.id}}">
           <van-card
           price = "{{item.price_range}}/小时"
           origin-price = "{{item.price_range*1.5}}"
@@ -69,7 +69,7 @@
             <button class="contact-btn" 
                   type="primary" 
                   size="mini" 
-                  bindtap="contactTeacher" 
+                  catchtap="contactTeacher" 
                   data-teacher="{{item}}">
             购买课程
             </button>

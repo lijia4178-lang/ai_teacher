@@ -1,126 +1,81 @@
-.detail-container {
-  background-color: #f5f5f5;
-  min-height: 100vh;
-  padding-bottom: 80rpx;
+
+.page{
+	background: #f6f8fb;
+	min-height: 100vh;
+	padding: 20rpx;
 }
 
-/* 导航栏样式 */
-.nav-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 16rpx 30rpx;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+.back{
+	background: transparent;
+	border: none;
+	color: #1f2937;
+	font-size: 26rpx;
+}
+.card{
+	background: #fff;
+	border-radius: 14rpx;
+	padding: 24rpx;
+	box-shadow: 0 10rpx 30rpx rgba(31,45,61,0.06);
+}
+.header{
+	display: flex;
+	gap: 18rpx;
+	align-items: center;
+}
+.avatar{
+	width: 140rpx;
+	height: 140rpx;
+	border-radius: 12rpx;
+	background: #e6eef7;
+	object-fit: cover;
+}
+.info{
+	flex: 1;
+}
+.name{
+	font-size: 34rpx;
+	font-weight: 700;
+	color: #0f1724;
+}
+.meta{
+	margin-top: 8rpx;
+	color: #6b7280;
+	font-size: 24rpx;
+	display: flex;
+	align-items: center;
+	gap: 8rpx;
+}
+.tag{
+	background: linear-gradient(90deg,#fef3c7,#fde68a);
+	padding: 6rpx 10rpx;
+	border-radius: 8rpx;
+	font-size: 20rpx;
+	color: #92400e;
+	font-weight: 700;
+}
+.dot{ color:#d1d5db }
+.subjects{ margin-top: 8rpx; color:#374151; font-size:24rpx }
+.divider{ height:1rpx; background:#f1f5f9; margin:16rpx 0 }
+.section{ margin-bottom:14rpx }
+.section-title{ font-weight:700; color:#0f1724; font-size:26rpx }
+.section-body{ color:#4b5563; font-size:24rpx; margin-top:8rpx; line-height:1.6 }
+.two-cols{ display:flex; gap:18rpx }
+.footer{ display:flex; justify-content:center; margin-top:12rpx }
+.contact{
+
+	padding: 12rpx 40rpx;
+	border-radius: 12rpx;
+	font-size: 28rpx;
+  
+	border: none;
+}
+.contact:active{
+	transform: translateY(1rpx);
+	color: #95ec69;
 }
 
-.back-btn {
-  padding: 10rpx 20rpx;
-  color: #07c160;
-  font-size: 32rpx;
+@media screen and (max-width:340px){
+	.avatar{ width:110rpx; height:110rpx }
+	.name{ font-size:30rpx }
 }
 
-.nav-title {
-  font-size: 36rpx;
-  font-weight: bold;
-  color: #333333;
-}
-
-.placeholder {
-  width: 80rpx;
-}
-
-/* 老师信息卡片 */
-.teacher-card {
-  background-color: #ffffff;
-  margin: 20rpx;
-  border-radius: 16rpx;
-  padding: 30rpx;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
-}
-
-.teacher-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30rpx;
-}
-
-.teacher-avatar {
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 50%;
-  background-color: #07c160;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 48rpx;
-  font-weight: bold;
-  margin-right: 30rpx;
-}
-
-.teacher-basic-info {
-  flex: 1;
-}
-
-.teacher-name {
-  font-size: 44rpx;
-  font-weight: bold;
-  color: #333333;
-  display: block;
-  margin-bottom: 10rpx;
-}
-
-.teacher-subject {
-  font-size: 32rpx;
-  color: #666666;
-}
-
-/* 详细信息 */
-.teacher-item {
-  background-color: #fff;
-  border-radius: 12rpx;
-  padding: 15rpx;
-  margin-bottom: 20rpx;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  transition: background-color 0.2s;
-}
-
-.teacher-item:active {
-  background-color: #f5f5f5;
-}
-
-.teacher-info {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 20rpx;
-  flex: 1;
-}
-.tea-head{
-  font-size:medium;
-  color:rgb(202, 174, 50);
-
-}
-.info-font{
-  width: 90rpx;
-  font-weight: bold;
-
-}
-.tea-title{
-  display: flex;
-}
-.tea-item{
-  width: 200rpx;
-}
-.tea-desc{
-  width: 200rpx;
-}
-.center-item{
-  display: flex;
-  justify-content: center;
-}

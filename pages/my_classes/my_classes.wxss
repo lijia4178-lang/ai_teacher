@@ -1,1 +1,69 @@
 /* pages/my_classes/my_classes.wxss */
+.page{
+	padding: 20rpx;
+	background: #f5f7fb;
+	min-height: 100vh;
+}
+.header{
+	font-size: 32rpx;
+	font-weight: 700;
+	color: #1f2d3d;
+	margin-bottom: 18rpx;
+}
+.feedback-card{
+	display: flex;
+	gap: 14rpx;
+	background: #fff;
+	border-radius: 12rpx;
+	padding: 16rpx;
+	margin-bottom: 12rpx;
+	box-shadow: 0 6rpx 18rpx rgba(31,45,61,0.06);
+}
+.left{
+	width: 180rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.date{
+	font-size: 24rpx;
+	color: #374151;
+	font-weight: 600;
+}
+.mood{
+	margin-top: 8rpx;
+	color: #6b7280;
+	font-size: 22rpx;
+}
+.mood-text{
+	color: #0b74de;
+	font-weight: 700;
+}
+.right{
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+.content-title{
+	font-size: 22rpx;
+	color: #111827;
+	font-weight: 700;
+	margin-top: 2rpx;
+}
+.content-text{
+	font-size: 24rpx;
+	color: #4b5563;
+	line-height: 1.6;
+	margin-top: 6rpx;
+	white-space: normal;
+}
+.empty{
+	color: #9ca3af;
+	text-align: center;
+	margin-top: 40rpx;
+}
+
+@media screen and (max-width: 340px){
+	.left{ width: 140rpx; }
+	.header{ font-size: 28rpx; }
+}

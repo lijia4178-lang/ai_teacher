@@ -1,1 +1,58 @@
-/* pages/my_children/my_children.wxss */
+/* pages/my_children/my_children.wxss */ 
+.page{
+	padding: 16px;
+	background: #f5f6fa;
+	min-height: 100vh;
+}
+.card{
+	background: #ffffff;
+	border-radius: 10px;
+	padding: 16px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.card-header{
+	display: flex;
+	align-items: center;
+}
+.avatar{
+	width: 64px;
+	height: 64px;
+	line-height: 64px;
+	border-radius: 50%;
+	background: linear-gradient(135deg,#6dd5ed,#2193b0);
+	color: #fff;
+	text-align: center;
+	font-size: 24px;
+	font-weight: 600;
+	margin-right: 12px;
+}
+.info .name{
+	font-size: 18px;
+	font-weight: 600;
+	color: #222;
+}
+.info .meta{
+	margin-top: 6px;
+	color: #888;
+	font-size: 13px;
+}
+.divider{
+	height: 1px;
+	background: #f0f0f0;
+	margin: 12px 0;
+}
+.section{
+	margin-bottom: 12px;
+}
+.section-title{
+	font-size: 14px;
+	color: #333;
+	font-weight: 600;
+	margin-bottom: 6px;
+}
+.section-content{
+	font-size: 14px;
+	color: #555;
+	line-height: 1.6;
+	white-space: normal;
+}

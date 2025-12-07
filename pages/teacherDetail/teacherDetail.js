@@ -5,12 +5,30 @@ Page({
   },
 
   onLoad: function(options) {
-    // 接收从上一个页面传来的老师信息
+    // 支持两种跳转来源：
+    // 1) 直接传入 teacher（老方式）
+    // 2) 只传入 teacherId（推荐），从 app.globalData.teachers 中查找对应老师
+    const app = getApp();
     if (options.teacher) {
-      const teacher = JSON.parse(options.teacher)
-      this.setData({
-        teacher: teacher
-      })
+      try {
+        const teacher = JSON.parse(options.teacher);
+        this.setData({ teacher });
+        return;
+      } catch (e) {
+        console.warn('解析传入的 teacher 失败', e);
+      }
+    }
+
+    if (options.teacherId) {
+      const teacherId = decodeURIComponent(options.teacherId);
+      const list = (app && app.globalData && app.globalData.teachers) || [];
+      const teacher = list.find(t => String(t.id) === String(teacherId));
+      if (teacher) {
+        this.setData({ teacher });
+      } else {
+        // 若找不到，可在此处调用接口获取详情
+        console.warn('未找到 teacherId 对应的数据，请通过接口获取详情', teacherId);
+      }
     }
   },
   onTabItemTap(item) {

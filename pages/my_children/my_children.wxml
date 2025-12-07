@@ -1,2 +1,20 @@
-<!--pages/my_children/my_children.wxml-->
-<text>pages/my_children/my_children.wxml</text>
+<view class="page">
+  <view class="card">
+    <view class="card-header">
+      <view class="avatar">张</view>
+      <view class="info">
+        <view class="name">{{children.child_name}}</view>
+        <view class="meta">{{children.child_age}}岁 · {{children.child_gender}} · {{children.child_sort}}</view>
+      </view>
+    </view>
+
+    <view class="divider"></view>
+
+    <block wx:for="{{sections}}" wx:key="title">
+      <view class="section">
+        <view class="section-title">{{item.title}}</view>
+        <view class="section-content">{{item.content}}</view>
+      </view>
+    </block>
+  </view>
+</view>

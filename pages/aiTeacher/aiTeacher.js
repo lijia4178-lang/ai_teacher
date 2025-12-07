@@ -304,8 +304,65 @@ Page({
       scrollToMessage: `message-${this.data.messages.length - 1}`
     })
     
-    // 使用流式传输发送消息
+    // 如果用户输入匹配老师，直接在聊天区展示最多4位老师的卡片
+    const matched = this.findMatchingTeachers(currentInput)
+    if (matched && matched.length) {
+      const aiMessage = {
+        type: 'ai',
+        content: '为您找到以下老师：',
+        teacherCards: matched.slice(0, 4),
+        boxes: []
+      }
+
+      this.data.messages.push(aiMessage)
+      this.setData({
+        messages: this.data.messages,
+        loading: false,
+        scrollToMessage: `message-${this.data.messages.length - 1}`
+      })
+      // 将结果持久化
+      const app = getApp()
+      app.globalData.messages = this.data.messages
+      app.saveMessages && app.saveMessages(this.data.messages)
+      return
+    }
+
+    // 使用流式传输发送消息（默认AI回复）
     await this.sendStreamMessage(currentInput, userType)
+  },
+
+  // 根据输入查找匹配老师（基于姓名/id/科目/学校模糊匹配）
+  findMatchingTeachers: function(input) {
+    if (!input || !input.trim()) return []
+    const q = input.trim().toLowerCase()
+    const app = getApp()
+    let teachers = (app && app.globalData && app.globalData.teachers) || []
+
+    // 若没有全局数据则尝试从 teacherList 页面的 mock 数据初始化
+    if (!teachers || teachers.length === 0) {
+      try {
+        // 动态引入 teacherList 的 mock 数据路径（不保证可用，仅兜底）
+        teachers = []
+      } catch (e) {
+        teachers = []
+      }
+    }
+
+    // 简单模糊匹配：姓名、id、subjects、school
+    const matched = teachers.filter(t => {
+      try {
+        const name = (t.name || '').toString().toLowerCase()
+        const id = (t.id || '').toString().toLowerCase()
+        const school = (t.school || '').toString().toLowerCase()
+        const subjects = (t.subjects || []).join(' ').toLowerCase()
+
+        return name.includes(q) || id.includes(q) || school.includes(q) || subjects.includes(q)
+      } catch (e) {
+        return false
+      }
+    })
+
+    return matched
   },
 
   // 流式响应功能（使用本地模拟实现）
@@ -409,6 +466,32 @@ Page({
     const msgIndex = e.currentTarget.dataset.msgIndex
     const boxIndex = e.currentTarget.dataset.boxIndex
     console.log('点击AI信息框:', msgIndex, boxIndex)
+  },
+  // 点击老师卡片查看详情
+  viewTeacherDetailFromCard: function(e) {
+    const teacherId = e.currentTarget && e.currentTarget.dataset && e.currentTarget.dataset.id
+    if (!teacherId) return
+    wx.navigateTo({
+      url: '/pages/teacherDetail/teacherDetail?teacherId=' + encodeURIComponent(teacherId)
+    })
+  },
+  // 卡片上的联系/购买按钮
+  contactTeacherFromCard: function(e) {
+    const ds = e.currentTarget && e.currentTarget.dataset || {}
+    const teacherName = ds.name || ds.teacherName || '该老师'
+    const teacherId = ds.id || ds.teacherId
+    const price = ds.price || ds.priceRange || ''
+
+    const content = price ? `确定要购买 ${teacherName} 的课程（价格：${price}）吗？` : `确定要购买 ${teacherName} 的课程吗？`
+    wx.showModal({
+      title: '购买课程',
+      content: content,
+      success: function(res) {
+        if (res.confirm) {
+          wx.showToast({ title: '联系请求已发送', icon: 'success' })
+        }
+      }
+    })
   },
   onShow: function() {
   }

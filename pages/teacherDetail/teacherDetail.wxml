@@ -1,80 +1,54 @@
+<view class="page">
 
 
-<view class="detail-container">
-  <!-- 顶部返回按钮 -->
-  <view class="nav-bar">
-    <view class="back-btn" bindtap="goBack">返回</view>
-    <text class="nav-title">老师详情</text>
-    <view class="placeholder"></view>
+  <view class="card">
+    <view class="header">
+      <image class="avatar" src="{{teacher.image_url || '/images/teacher2.jpg'}}" mode="cover" />
+      <view class="info">
+        <view class="name">{{teacher.name}}</view>
+        <view class="meta">
+          <text class="tag">{{teacher.sort}}</text>
+          <text class="dot">·</text>
+          <text>{{teacher.teaching_age}}年教龄</text>
+          <text class="dot">·</text>
+          <text>{{teacher.price_range}}元/小时</text>
+        </view>
+        <view class="subjects">教授：{{teacher.subjects && teacher.subjects.join('、') || teacher.subjects}}</view>
+      </view>
+    </view>
+
+    <view class="divider"></view>
+
+    <view class="section">
+      <view class="section-title">教师简介</view>
+      <view class="section-body">{{teacher.desc}}</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">近期上课</view>
+      <view class="section-body">{{teacher.latest_class_desc}}</view>
+    </view>
+
+    <view class="section two-cols">
+      <view>
+        <view class="section-title">学校</view>
+        <view class="section-body">{{teacher.school}}</view>
+      </view>
+      <view>
+        <view class="section-title">地址</view>
+        <view class="section-body">{{teacher.location}}</view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">家长评价</view>
+      <view class="section-body">{{teacher.parents_review}}</view>
+    </view>
+
+    <view class="footer">
+      <button class="contact" type="primary" bindtap="contactTeacher">购买课程</button>
+    </view>
   </view>
-
-  <view class="teacher-item">
-    <van-card
-          price = "{{teacher.price_range}}/小时"
-          origin-price = "{{teacher.price_range*1.5}}"
-          thumb="/images/teacher2.jpg"
-          lazy-load     
-          >
-
-          <view slot="title" >
-            
-            <view class="tea-title">
-            <view class="tea-item">
-            <text class="info-font">姓名：</text>
-
-            {{teacher.name}}</view>
-            <van-tag mark type="warning">{{teacher.sort}}</van-tag>
-          </view>
-          </view>
-          <view slot="desc">
-          <view class="tea-title" >
-          <view class="tea-desc">
-          <text class="info-font">教授科目：</text>
-          
-          {{teacher.subjects}}</view>
-          <view class="center-item">
-          <text class="info-font">学校：</text>
-          {{teacher.school}}</view>
-          </view >
-          <view class="tea-title">
-          <view class="tea-desc">
-          <text class="info-font">教授学段：</text>
-          
-          {{teacher.teach_grade}}</view>
-          <view>
-          <text class="info-font">教龄:</text>         
-          {{teacher.teaching_age}}年</view>
-          </view>
-          
-          <view>
-          <text class="info-font">自我描述:</text>
-          {{teacher.desc}}</view>
-          
-          <view>
-          <text class="info-font">家长评价:</text>
-          
-          {{teacher.parents_review}}</view>
-          <view>
-          <text class="info-font">地址：</text>
-          
-          {{teacher.location}}</view>
-          <view class="tea-head">
-          <text class="info-font">近期上课：</text>
-          {{teacher.latest_class_desc}}</view>
-          
-          </view>
-        
-          <view slot="footer">
-            <button class="contact-btn" 
-                  type="primary" 
-                  size="mini" 
-                  bindtap="contactTeacher" 
-                  data-teacher="{{teacher}}">
-            购买课程
-            </button>
-
-          </view>
-
-          </van-card>
-          </view>
 </view>
+
+
