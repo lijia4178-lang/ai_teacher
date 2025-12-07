@@ -29,27 +29,27 @@
 
   <!-- 功能列表 -->
   <view class="menu-section">
-      <view class="menu-item" bindtap="clearChatHistory">
-        <view class="menu-icon">清</view>
-        <view class="menu-text">清除聊天记录</view>
+      <view class="menu-item" bindtap="toMyChildren">
+
+        <view class="menu-text">我的孩子</view>
         <view class="menu-arrow">›</view>
       </view>
 
-      <view class="menu-item" bindtap="aboutUs">
-        <view class="menu-icon">关</view>
-        <view class="menu-text">关于我们</view>
+      <view class="menu-item" bindtap="toMyTeacher">
+
+        <view class="menu-text">我的老师</view>
         <view class="menu-arrow">›</view>
       </view>
 
-      <view class="menu-item" bindtap="feedback">
-        <view class="menu-icon">反</view>
-        <view class="menu-text">意见反馈</view>
+      <view class="menu-item" bindtap="toMyClasses">
+
+        <view class="menu-text">我的课程</view>
         <view class="menu-arrow">›</view>
       </view>
 
       <view class="menu-item" bindtap="settings">
-        <view class="menu-icon">设</view>
-        <view class="menu-text">设置</view>
+
+        <view class="menu-text">联系我们</view>
         <view class="menu-arrow">›</view>
       </view>
     </view>

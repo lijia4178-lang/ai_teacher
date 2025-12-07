@@ -46,16 +46,120 @@ Page({
 
   setMockTeachers: function() {
     const mockTeachers = [
-      { id: '1', name: '张老师', subject: '数学', experience: 16, price: 400, introduction: '资深数学教师，有丰富的教学经验' },
-      { id: '2', name: '李老师', subject: '英语', experience: 7, price: 310, introduction: '专注英语教学，善于激发学生兴趣' },
-      { id: '3', name: '王老师', subject: '物理', experience: 12, price: 330, introduction: '物理教学专家，深入浅出' },
-      { id: '4', name: '刘老师', subject: '语文', experience: 5, price: 280, introduction: '语文教学骨干，重视阅读理解' },
-      { id: '5', name: '陈老师', subject: '化学', experience: 8, price: 350, introduction: '化学名师，实验教学见长' },
-      { id: '6', name: '赵老师', subject: '生物', experience: 3, price: 200, introduction: '年轻生物教师，教学方法新颖' },
-      { id: '7', name: '孙老师', subject: '历史', experience: 10, price: 290, introduction: '历史学科带头人' },
-      { id: '8', name: '周老师', subject: '地理', experience: 6, price: 260, introduction: '地理教学能手' },
-      { id: '9', name: '吴老师', subject: '政治', experience: 4, price: 240, introduction: '政治教师，备考经验丰富' },
-      { id: '10', name: '郑老师', subject: '英语', experience: 15, price: 450, introduction: '英语特级教师' }
+      {
+        "id": "T001",
+        "gender": "女",
+        "name": "王老师",
+        "age": 32,
+        "subjects": ["数学", "物理"],
+        "school": "北京师范大学",
+        "location": "北京市海淀区",
+        "experience": "8年一线教学经验，曾辅导多名学生考入清华、北大等名校。",
+        "latest_class_desc": "最近20节课主要针对高三学生的函数与导数部分进行系统复习，学生掌握情况良好，平均成绩提升15分。",
+        "price_range": 300,
+        "sort": "教练型老师",
+        "teach_grade": ["高一", "高二", "高三"],
+        "desc": "教学风格严谨，注重逻辑推理与解题技巧，善于激发学生潜能。",
+        "parents_review": "王老师非常负责，孩子数学成绩提升明显，学习态度也变得更积极。",
+        "contact": "微信：wanglaoshi001（备注“家长”）",
+        "teaching_age": 8 ,
+        "image_url":"../../images/teacher1"
+        },
+      {
+        "id": "T002",
+        "gender": "男",
+        "name": "李洋",
+        "age": 28,
+        "subjects": ["英语"],
+        "school": "上海外国语大学",
+        "location": "上海市徐汇区",
+        "experience": "5年国际学校与线上外教经验，雅思8.0，擅长口语与写作冲刺。",
+        "latest_class_desc": "最近20节课围绕初三口语中考模拟，学生流利度提升30%，错误率下降40%。",
+        "price_range": 200,
+        "sort": "情感型老师",
+        "teach_grade": ["小学", "初一", "初二", "初三"],
+        "desc": "课堂氛围轻松，善用故事与游戏激发兴趣，关注学生情绪与自信。",
+        "parents_review": "孩子原来害怕开口，现在回家主动用英语讲学校趣事，变化巨大！",
+        "contact": "电话：138-0202-2022（微信同号）",
+        "teaching_age": 5,
+        "image_url":"../../images/teacher2"
+      },
+      {
+        "id": "T003",
+        "gender": "女",
+        "name": "张婧",
+        "age": 35,
+        "subjects": ["语文", "写作"],
+        "school": "华东师范大学",
+        "location": "杭州市西湖区",
+        "experience": "12年重点中学班主任，累计发表教学论文20篇，辅导学生获省级作文一等奖8次。",
+        "latest_class_desc": "最近20节课完成高一议论文序列训练，学生平均得分由42提升至52（满分60）。",
+        "price_range": 400,
+        "sort": "启发式老师",
+        "teach_grade": ["初一", "初二", "初三", "高一", "高二"],
+        "desc": "以“读写一体化”项目串联课堂，引导学生做调研、写报告，培养批判思维。",
+        "parents_review": "张老师把语文变成探索课，孩子学会查资料、写报告，成绩与眼界一起涨。",
+        "contact": "微信：zjwriting2023",
+        "teaching_age": 12,
+        "image_url":"../../images/teacher3"
+      },
+      {
+        "id": "T004",
+        "gender": "男",
+        "name": "陈骁",
+        "age": 29,
+        "subjects": ["物理", "信息技术"],
+        "school": "中国科学技术大学",
+        "location": "合肥市蜀山区",
+        "experience": "7年竞赛教练，带出3枚物理奥赛金牌，熟悉Arduino与Python编程。",
+        "latest_class_desc": "最近20节课完成“智能小车”项目，学生掌握PID调速，两名学员获省赛一等奖。",
+        "price_range": 350,
+        "sort": "项目制老师",
+        "teach_grade": ["初二", "初三", "高一", "高二"],
+        "desc": "把物理知识嵌入真实工程问题，学生边做边学，培养系统思维与动手能力。",
+        "parents_review": "孩子周末自愿去实验室，说物理“像打游戏通关”，我们家长也惊讶。",
+        "contact": "邮箱：chenxiao_lab@qq.com",
+        "teaching_age": 7,
+        "image_url":"../../images/teacher1.jpg"
+      },
+      {
+        "id": "T005",
+        "gender": "女",
+        "name": "赵慧",
+        "age": 45,
+        "subjects": ["小学数学", "思维训练"],
+        "school": "南京师范大学",
+        "location": "南京市鼓楼区",
+        "experience": "20年小学数学教研组长，主编《快乐思维》教材，擅长数独、魔方、速算。",
+        "latest_class_desc": "最近20节课完成“数独+魔方”双训练，学生平均速度提升50%，逻辑思维测评提高20%。",
+        "price_range": 250,
+        "sort": "温和结构化老师",
+        "teach_grade": ["小学"],
+        "desc": "步骤清晰、节奏舒缓，用儿歌与图形把抽象概念具体化，特别适合低年级。",
+        "parents_review": "赵老师声音温柔，孩子从抗拒数学到每天主动做两页题，我们特别感激。",
+        "contact": "电话：139-0514-0514（微信同号，备注“小学家长”）",
+        "teaching_age": 20,
+        "image_url":"../../images/teacher5"
+      },
+      {
+        "id": "T006",
+        "gender": "男",
+        "name": "孙跃",
+        "age": 31,
+        "subjects": ["化学"],
+        "school": "复旦大学",
+        "location": "上海市浦东新区",
+        "experience": "9年高三把关教师，熟悉新高考等级考命题趋势，押题命中率高达70%。",
+        "latest_class_desc": "最近20节课完成实验题+工业流程专题，学生平均等级考成绩由B+提升至A。",
+        "price_range": 400,
+        "sort": "教练型老师",
+        "teach_grade": ["高二", "高三"],
+        "desc": "高强度刷题+错题归因，配套冥想与时间管理训练，帮学生短期突破瓶颈。",
+        "parents_review": "孙老师带了两周，孩子模考直接跃到年级前10，效率惊人！",
+        "contact": "微信：sunyuechem2020",
+        "teaching_age": 9,
+        "image_url":"../../images/teacher6"
+      }
     ];
     
     this.setData({
@@ -143,8 +247,8 @@ Page({
   contactTeacher: function(e) {
     const teacher = e.currentTarget.dataset.teacher;
     wx.showModal({
-      title: '联系老师',
-      content: '确定要联系 ' + teacher.name + ' 老师吗？',
+      title: '购买课程',
+      content: '确定要购买 ' + teacher.name + ' 老师课程吗，（不满意随时可退）',
       success: function(res) {
         if (res.confirm) {
           wx.showToast({

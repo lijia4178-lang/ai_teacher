@@ -4,7 +4,11 @@
     "pages/my/my",
     "pages/aiTeacher/aiTeacher",
     "pages/login/login",
-    "pages/teacherDetail/teacherDetail"
+    "pages/teacherDetail/teacherDetail",
+    "pages/my_children/my_children",
+    "pages/my_classes/my_classes",
+    "pages/about_us/about_us",
+    "pages/my_teacher/my_teacher"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,7 +22,10 @@
     "van-popup": "@vant/weapp/popup/index",
     "van-picker": "@vant/weapp/picker/index",
     "van-toast": "@vant/weapp/toast/index",
-    "@vant/weapp/card/index": "@vant/weapp/card/index"
+     "van-card": "@vant/weapp/card/index",
+     "van-tag": "@vant/weapp/tag/index"
+
+
   },
 
   "tabBar": {

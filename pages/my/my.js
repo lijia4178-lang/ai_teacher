@@ -7,8 +7,7 @@ Page({
   },
   
   onLoad: function() {
-    // 加载学习方案数据
-    this.loadStudyPlans();
+
     
     // 尝试获取用户信息
     this.getUserInfo();
@@ -105,113 +104,6 @@ Page({
     }
   },
 
-  // 加载学习方案数据
-  loadStudyPlans: function() {
-    // 模拟从存储中获取数据
-    try {
-      const plans = wx.getStorageSync('studyPlans') || [];
-      this.setData({
-        studyPlans: plans,
-        isLoading: false
-      });
-    } catch (e) {
-      console.error('获取学习方案失败:', e);
-      this.setData({
-        isLoading: false
-      });
-      // 如果获取失败，使用模拟数据
-      this.setMockStudyPlans();
-    }
-  },
-
-  // 设置模拟学习方案数据
-  setMockStudyPlans: function() {
-    const mockPlans = [
-      {
-        id: '1',
-        title: '高三数学复习计划',
-        subject: '数学',
-        startTime: '2024-10-01',
-        endTime: '2024-12-31',
-        progress: 65,
-        status: '进行中',
-        teacherName: '张老师',
-        totalHours: 80,
-        completedHours: 52
-      },
-      {
-        id: '2',
-        title: '英语听力提升计划',
-        subject: '英语',
-        startTime: '2024-09-15',
-        endTime: '2024-11-15',
-        progress: 100,
-        status: '已完成',
-        teacherName: '李老师',
-        totalHours: 40,
-        completedHours: 40
-      },
-      {
-        id: '3',
-        title: '物理基础巩固',
-        subject: '物理',
-        startTime: '2024-10-10',
-        endTime: '2025-01-10',
-        progress: 25,
-        status: '进行中',
-        teacherName: '王老师',
-        totalHours: 60,
-        completedHours: 15
-      }
-    ];
-
-    this.setData({
-      studyPlans: mockPlans
-    });
-  },
-
-  // 查看学习方案详情
-  viewStudyPlanDetail: function(e) {
-    const planId = e.currentTarget.dataset.id;
-    const plan = this.data.studyPlans.find(p => p.id === planId);
-    
-    if (plan) {
-      wx.navigateTo({
-        url: `/pages/studyPlanDetail/studyPlanDetail?plan=${encodeURIComponent(JSON.stringify(plan))}`
-      });
-    }
-  },
-
-  // 添加新的学习方案
-  addNewStudyPlan: function() {
-    wx.navigateTo({
-      url: '/pages/addStudyPlan/addStudyPlan'
-    });
-  },
-
-  // 清除聊天记录
-  clearChatHistory: function() {
-    const that = this
-    wx.showModal({
-      title: '提示',
-      content: '确定要清除所有聊天记录吗？',
-      success: function(res) {
-        if (res.confirm) {
-          // 清除全局数据中的聊天记录
-          const app = getApp()
-          app.globalData.messages = []
-          
-          // 清除本地缓存
-          wx.removeStorageSync('messages')
-          
-          wx.showToast({
-            title: '清除成功',
-            icon: 'success'
-          })
-        }
-      }
-    })
-  },
 
   // 关于我们
   aboutUs: function() {
@@ -232,22 +124,32 @@ Page({
       confirmText: '确定'
     })
   },
+toMyChildren: function(){
+  wx.navigateTo({
+    url: '/pages/my_children/my_children'
+  })
+},
+toMyTeacher: function(){
+  wx.navigateTo({
+    url: '/pages/my_teacher/my_teacher'
+  })
 
-  // 设置
-  settings: function() {
-    wx.showModal({
-      title: '设置',
-      content: '设置功能正在开发中...',
-      showCancel: false,
-      confirmText: '确定'
-    })
-  },
+},
+toMyClasses:function(){
+  wx.navigateTo({
+    url: '/pages/my_classes/my_classes'
+  })
+
+
+},
+
+
+
+
+ 
 
   // 页面显示时刷新数据
   onShow: function() {
-    // 重新加载学习方案数据，确保最新的数据显示
-    if (this.data.isLoading === false) {
-      this.loadStudyPlans();
-    }
+
   }
 })

@@ -2,80 +2,85 @@
 <view class="container">
  
 
-  <!-- 筛选条件区域 -->
-  <view class="filter-section">
-    <!-- 科目筛选 -->
-    <view class="filter-group">
-      <text class="filter-label">科目：</text>
-      <view class="filter-options">
-        <view wx:for="{{subjectOptions}}" wx:key="*this" 
-              class="filter-option {{selectedSubject === item ? 'selected' : ''}}" 
-              bindtap="selectSubject" 
-              data-subject="{{item}}">
-          {{item}}
-        </view>
-      </view>
-    </view>
-
-    <!-- 教学经验筛选 -->
-    <view class="filter-group">
-      <text class="filter-label">经验：</text>
-      <view class="filter-options">
-        <view wx:for="{{experienceOptions}}" wx:key="value" 
-              class="filter-option {{selectedExperience === item.value ? 'selected' : ''}}" 
-              bindtap="selectExperience" 
-              data-experience="{{item.value}}">
-          {{item.label}}
-        </view>
-      </view>
-    </view>
-
-    <!-- 价格范围筛选 -->
-    <view class="filter-group">
-      <text class="filter-label">价格：</text>
-      <view class="filter-options">
-        <view wx:for="{{priceOptions}}" wx:key="value" 
-              class="filter-option {{selectedPrice === item.value ? 'selected' : ''}}" 
-              bindtap="selectPrice" 
-              data-price="{{item.value}}">
-          {{item.label}}
-        </view>
-      </view>
-    </view>
-
-    <!-- 重置按钮 -->
-    <view class="reset-button" bindtap="resetFilters">
-      重置筛选
-    </view>
-  </view>
-
   <!-- 教师列表 -->
   <view class="teacher-list">
-    <!-- 筛选结果统计 -->
-    <view class="result-info">
-      <text>共找到 {{filteredTeachers.length}} 位教师</text>
-    </view>
     
     <!-- 教师列表 -->
-    <block wx:if="{{filteredTeachers.length > 0}}">
-      <block wx:for="{{filteredTeachers}}" wx:key="id">
+    <block wx:if="{{teachers.length > 0}}">
+
+      <block wx:for="{{teachers}}" wx:key="id">
         <view class="teacher-item">
           <van-card
-          num="2"
-          price = "2.00"
-          desc= "描述"
-          title = "商品"
-          thumb="../../images/AI_3selected.png"        
-          />
-          <button class="contact-btn" 
+          price = "{{item.price_range}}/小时"
+          origin-price = "{{item.price_range*1.5}}"
+          thumb="/images/teacher2.jpg"
+          lazy-load     
+          >
+
+          <view slot="title" >
+            
+            <view class="tea-title">
+            <view class="tea-item">
+            <text class="info-font">姓名：</text>
+
+            {{item.name}}</view>
+            <van-tag mark type="warning">{{item.sort}}</van-tag>
+          </view>
+          </view>
+          <view slot="desc">
+          <view class="tea-title" >
+          <view class="tea-desc">
+          <text class="info-font">教授科目：</text>
+          
+          {{item.subjects}}</view>
+          <view class="center-item">
+          <text class="info-font">学校：</text>
+          {{item.school}}</view>
+          </view >
+          <view class="tea-title">
+          <view class="tea-desc">
+          <text class="info-font">教授学段：</text>
+          
+          {{item.teach_grade}}</view>
+          <view>
+          <text class="info-font">教龄:</text>         
+          {{item.teaching_age}}年</view>
+          </view>
+          
+          <view>
+          <text class="info-font">自我描述:</text>
+          {{item.desc}}</view>
+          
+          <view>
+          <text class="info-font">家长评价:</text>
+          
+          {{item.parents_review}}</view>
+          <view>
+          <text class="info-font">地址：</text>
+          
+          {{item.location}}</view>
+          <view class="tea-head">
+          <text class="info-font">近期上课：</text>
+          {{item.latest_class_desc}}</view>
+        
+          </view>
+
+          <view slot="footer">
+            <button class="contact-btn" 
                   type="primary" 
                   size="mini" 
                   bindtap="contactTeacher" 
                   data-teacher="{{item}}">
-            联系老师
-          </button>
+            购买课程
+            </button>
+
+          </view>
+
+          </van-card>
+
         </view>
       </block>
+
     </block>
     
     <!-- 无结果提示 -->
@@ -85,4 +90,5 @@
       </view>
     </block>
   </view>
+
 </view>
